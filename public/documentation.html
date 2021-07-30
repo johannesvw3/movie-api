@@ -5,8 +5,187 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="styles/documentation-style.css">
 </head>
 <body>
-    <h1>I'm the documentation page!</h1>
+    <h1>Documentation for myFlix app</h1>
+    <table id="operations">
+        <div>
+        <thead class="table-head">
+            <tr>
+                <th>Business Logic</th>
+                <th>URL</th>
+                <th>HTTP Method</th>
+                <th>Request Body Data Format</th>
+                <th>Response Body Data Format</th>
+            </tr>
+        </thead>
+        <td>
+            Get list of all movies
+        </td>
+        <td>
+            /movies
+        </td>
+        <td>
+            GET
+        </td>
+        <td>None</td>
+        <td class="json-object-cell">A JSON object with all data about all movies: <br><br>
+            {<br>
+            Movie_ID: NUMBER<br>
+            Title: "Movie Title",<br>
+            Description: "movie description...",<br>
+            Genre: "Movie Genre",<br>
+            <span id="center-object">Name: "Adventure"</span><br>
+            <span id="center-object">Description: "Adventure Genre Description"</span><br>
+            Director: "Director Full Name",<br>
+            <span id="center-object">Birth_Year: "Birth Year 1234"</span><br>
+            <span id="center-object">Deat_Year: "Death Year 4321</span><br>
+            <span id="center-object">Bio: "Director Biography talking about his movies and life goes here"</span><br>
+            Actors: ["Actor 1", "Actor 2", "Actor 3"],<br>
+            imgUrl: "www.LinkToMovie.movie/Poster/Image"
+            Featured: "False"
+            }
+        </td>  
+    </tr>
+    <tr>
+        <td>Return Search Query by Title, Acotr, Genre, or Director</td>
+        <td>/movies/?genre=[genreName] -or-<br>/movies/?actor=[actorName] -or-<br>/movies/?director=[directorName] -or-<br>/movies/?title=[movieTitle] ,</td>
+        <td>GET</td>
+        <td>None</td>
+        <td class="json-object-cell">A JSON object with all movies pertaining to the specified movie Title,<br> or Director name, or Genre, or Actor</td>
+    </tr>
+    <tr>
+        <td>Return Search Query of all Genres</td>
+        <td>/genres</td>
+        <td>GET</td>
+        <td>None</td>
+        <td class="json-object-cell">A JSON object with data about all genres<br><br>{<br>Name: "Name of Genre"<br>Description: "Description of genre"<br>}</td>
+    </tr>
+    <td>
+        Allow new user to register.
+    </td>
+    <td>
+        /user
+    </td>
+    <td>
+        POST
+    </td>
+    <td class="json-object-cell">
+        A JSON object holding data containing first name, last name, age and mail adress. Example:
+        <br><br>
+        {<br>
+        user_name: "username",<br>
+        password: "password",<br>
+        email: "email",<br>
+        birth_date: DATE<br>
+        }
+    </td>
+    <td class="json-object-cell">
+        A  message if the registration has been succesfull or not. If the registration was a success, user will
+        get a new user as a JSON object with a user id number.<br><br>
+        {<br>
+            id: NUMBER<br>
+            user_name: "username",<br>
+            password: "password",<br>
+            email: "email",<br>
+            birth_date: DATE<br>
+            }
+    </td>
+</tr>
+<tr>
+    <td>
+        Return User Information
+    </td>
+    <td>
+        /user/:id
+    </td>
+    <td>
+        GET
+    </td>
+    <td>
+        None
+    </td>
+    <td>
+        A JSON object with all the data about the user
+    </td>
+</tr>
+<tr>
+    <td>
+        Allow user to update their user info (username/password/email/birthdate)
+    </td>
+    <td>
+        /user/:id
+    </td>
+    <td>
+        PUT
+    </td>
+    <td class="json-object-cell">
+        A JSON object with all data about the user<br><br>
+        {<br>
+            user_name: "username",<br>
+            password: "password",<br>
+            email: "email",<br>
+            birth_date: DATE<br>
+            }
+    </td>
+    <td>
+        A message whether or not the information has been successfully updated.
+    </td>
+</tr>
+<tr>
+    <td>
+        Allow existing user to deregister (showing only a text that a user email has been removed—more on this later)
+    </td>
+    <td>
+        user/:id
+    </td>
+    <td>
+        DELETE
+    </td>
+    <td>
+        None
+    </td>
+    <td>
+        A message stating wheater or not deregistration has been successful
+    </td>
+</tr>
+<tr>
+    <td>
+        Allow user to add a movie to their list of favorites
+    </td>
+    <td>
+        /user/:id/favorites/:Movie_ID
+    </td>
+    <td>
+        POST
+    </td>
+    <td class="json-object-cell">
+        JSON object of movie which user selected<br> to add to favorites list
+    </td>
+    <td>
+        Diplay of favorites movie list (Movie added)
+    </td>
+</tr>
+<tr>
+    <td>
+        Allow user to remove a movie from their list of favorites
+    </td>
+    <td>
+        /user/:id/favorites/:Movie_ID
+    </td>
+    <td>
+       DELETE  
+    </td>
+    <td>
+       None
+    </td>
+    <td>
+       Diplay of favorites movie list (Movie deleted)
+    </td>
+</tr>
+</tbody>
+    </table>
+</div>
 </body>
 </html>

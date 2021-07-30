@@ -1,0 +1,34 @@
+html {
+    background-color: rgb(255, 255, 255);
+}
+
+table {
+    background-color: black;
+}
+
+#customers td, #operations th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #operations th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+  }
+  
+  td {
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+  }
+
+  .json-object-cell {
+      text-align: left;
+  }
+
+  #center-object {
+      padding-left: 40px;
+      font-weight: bold;
+      font-size: 14px;
+  }
