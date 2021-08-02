@@ -16,7 +16,7 @@ let users = [
         favorites: [
             //1
             {
-              Movie_ID: "3",
+              movie_id: "3",
               title: 'Lord of the Rings',
               actor: 'Orlando',
               genre: 'adventure',
@@ -25,7 +25,7 @@ let users = [
           } ,
           //2
           {
-              Movie_ID: "7",
+              movie_id: "7",
               title: 'Harry Potter',
               actor: 'Daniel Radcliffe',
               genre: 'Fantasy',
@@ -49,7 +49,16 @@ let users = [
 
 let genres = [
     {
-        Name: 'Fantasy'
+        name: 'Fantasy',
+        description: 'This is a description of this genre'
+    } ,
+    {
+        name: 'Adventure',
+        description: 'This is a description of this genre'
+    } ,
+    {
+        name: 'Fiction',
+        description: 'This is a description of this genre'
     }
 ]
 
@@ -58,7 +67,7 @@ let movies = [
     {
         title: 'Lord of the Rings',
         actor: 'Orlando',
-        genre: 'adventure',
+        genre: 'Fantasy',
         director: 'person'
 
     } ,
@@ -68,7 +77,7 @@ let movies = [
         actor: 'Daniel Radcliffe',
         genre: 'Fantasy',
         director: 'person',
-        Movie_ID: "7"
+        movie_id: "7"
     } ,
     //3
     {
@@ -76,7 +85,7 @@ let movies = [
         actor: 'Toumas Holopainen',
         genre: 'Fiction',
         director: 'person',
-        Movie_ID: "1"
+        movie_id: "1"
     } ,
     //4
     {
@@ -96,28 +105,28 @@ let movies = [
     {
         title: 'Glass',
         actor: 'Bruce Willis',
-        genre: 'adventure',
+        genre: 'Adventure',
         director: 'person'
     } ,
     //7
     {
         title: 'The Prestige',
         actor: 'Christian Bale',
-        genre: 'adventure',
+        genre: 'Adventure',
         director: 'person'
     } , 
     //8
     {
         title: 'The Dark Knight',
         actor: 'Christian Bale',
-        genre: 'adventure',
+        genre: 'Adventure',
         director: 'person'
     } , 
     //9
     {
         title: 'Pirates of the Caribbean',
         actor: 'Orlando',
-        genre: 'adventure',
+        genre: 'Adventure',
         director: 'person'
         
     } ,
@@ -137,31 +146,38 @@ app.get("/", (req, res) => {
     res.send("My Flix App");
 });
 
-app.get("/movies", (req, res) => {
-    res.json(movies);
-});
-
 /*app.get("/movies", (req, res) => {
-    if (req.query.title) {
-        res.json(movies.find((movie) => {
-            return movie.title === req.query.title
-        }));
-    }
-    if (req.query.actor) {
-        res.json(movies.find((movie) => {
-            return movie.actor === req.query.actor
-        }));
-    }
-    if (req.query.director) {
-        res.json(movies.find((movie) => {
-            return movie.director === req.query.director
-        }));
-    }
     res.json(movies);
 });
 */
 
-app.get("/movies/title/:title", (req, res) => {
+app.get("/movies", (req, res) => {
+    if (req.query.title) {
+        res.json(movies.filter((movie) => {
+            return movie.title === req.query.title
+        }));
+    }
+    if (req.query.actor) {
+        res.json(movies.filter((movie) => {
+            return movie.actor === req.query.actor
+        }));
+    }
+    if (req.query.director) {
+        res.json(movies.filter((movie) => {
+            return movie.director === req.query.director
+        }));
+    }
+    if (req.query.genre) {
+        res.json(movies.filter((movie) => {
+            return movie.genre === req.query.genre
+        }));
+    }
+    res.json(movies);
+});
+
+
+
+/*app.get("/movies/title/:title", (req, res) => {
     console.log("title")
     res.json(movies.find((movie) => {
         return movie.title === req.params.title
@@ -187,20 +203,43 @@ app.get("/movies/:genre", (req, res) => {
         return movie.genre === req.params.genre
     }));
 });
+*/
 
-app.get("/genre", (req, res) => {
+
+app.get("/genres", (req, res) => {
+    if (req.query.name) {
+        res.json(genres.filter((genre) => {
+            return genre.name === req.query.name
+        }));
+    }
+    if (req.query.description) {
+        res.json(genres.filter((genre) => {
+            return genre.description === req.query.description
+        }));
+    }
     res.json(genres);
 });
 
+/*
 app.get("/user", (req, res) => {
     res.json(users);
 });
 
 app.get("/user/:id", (req, res) => {
-    res.json(users.find((user) => {
+    res.json(users.filter((user) => {
         return user.id === req.params.id
     }));
 });
+*/
+
+app.get("/user", (req, res) => {
+    if (req.query.id) {
+        res.json(users.filter((user) => {
+            return user.id === req.query.id
+        }));
+        }
+        res.json(users);
+    });
 
 //Creates New User Account
 
@@ -249,28 +288,13 @@ app.delete('/user/:id', (req, res) => {
 
 //Add movies to favorite list
 
-app.post("user/:id/favorites", (req, res) => {
-    users.find((user) => {
-        return user.filter(obj => {
-            obj.favorites === req.paramss.Movie_ID
-        })
-    })
-        res.json(favorites)
-        favorites.push()
-    });
+app.post('/user/:id/favorites/:movie_id', (req, res) => {
+    res.json('adds movie from favorites list');
+  });
 
 //Delete movie from favorites list
-app.delete('/user/:id/favorites/:Movie_ID', (req, res) => {
-        let movie = favorites.find((movie) => {
-             return movie.Movie_ID === req.params.Movie_ID 
-            });
-      
-        if (movie) {
-          favorites = favorites.filter((obj) => {
-               return obj.Movie_ID !== req.params.Movie_ID 
-            });
-          res.status(201).send(favorites);
-        }
+app.delete('/user/:id/favorites/:movie_id', (req, res) => {
+        res.json('deletes movie from favorites list');
       });
 
 //Error Message
