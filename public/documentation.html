@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td>Return Search Query by Title, Acotr, Genre, or Director</td>
-        <td>/movies/?genre=[genreName] -or-<br>/movies/?actor=[actorName] -or-<br>/movies/?director=[directorName] -or-<br>/movies/?title=[movieTitle] ,</td>
+        <td>/movies/genre/:genre -or-<br>/movies/actors/:actors -or-<br>/movies/director/:director -or-<br>/movies/title/:title</td>
         <td>GET</td>
         <td>None</td>
         <td class="json-object-cell">A JSON object with all movies pertaining to the specified movie Title,<br> or Director name, or Genre, or Actor</td>
@@ -75,10 +75,11 @@
         A JSON object holding data containing first name, last name, age and mail adress. Example:
         <br><br>
         {<br>
-        user_name: "username",<br>
-        password: "password",<br>
-        email: "email",<br>
-        birth_date: DATE<br>
+        Username: "username",<br>
+        Name: "name", <br>
+        Password: "password",<br>
+        Email: "email",<br>
+        Birthday: DATE<br>
         }
     </td>
     <td class="json-object-cell">
@@ -86,10 +87,11 @@
         get a new user as a JSON object with a user id number.<br><br>
         {<br>
             id: NUMBER<br>
-            user_name: "username",<br>
-            password: "password",<br>
-            email: "email",<br>
-            birth_date: DATE<br>
+            Username: "username",<br>
+            Name: "name", <br>
+            Password: "password",<br>
+            Email: "email",<br>
+            Birthday: DATE<br>
             }
     </td>
 </tr>
@@ -98,7 +100,7 @@
         Return User Information
     </td>
     <td>
-        /user/:id
+        /user/username/:username
     </td>
     <td>
         GET
@@ -115,7 +117,7 @@
         Allow user to update their user info (username/password/email/birthdate)
     </td>
     <td>
-        /user/:id
+        /user/update/:username
     </td>
     <td>
         PUT
@@ -123,10 +125,11 @@
     <td class="json-object-cell">
         A JSON object with all data about the user<br><br>
         {<br>
-            user_name: "username",<br>
-            password: "password",<br>
-            email: "email",<br>
-            birth_date: DATE<br>
+            Username: "username",<br>
+            Name: "name", <br>
+            Password: "password",<br>
+            Email: "email",<br>
+            Birthday: DATE<br>
             }
     </td>
     <td>
@@ -138,7 +141,7 @@
         Allow existing user to deregister (showing only a text that a user email has been removed—more on this later)
     </td>
     <td>
-        user/:id
+        user/delete/:username
     </td>
     <td>
         DELETE
@@ -155,7 +158,7 @@
         Allow user to add a movie to their list of favorites
     </td>
     <td>
-        /user/:id/favorites/:Movie_ID
+        /user/favorites/:Username/movies/:MovieID
     </td>
     <td>
         POST
@@ -172,7 +175,7 @@
         Allow user to remove a movie from their list of favorites
     </td>
     <td>
-        /user/:id/favorites/:Movie_ID
+        /user/user/favorites/delete/:Username/movies/:MovieID
     </td>
     <td>
        DELETE  
