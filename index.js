@@ -206,6 +206,7 @@ app.get("/", (req, res) => {
                   Users
                     .create({
                       Username: req.body.Username,
+                      Name: req.body.Name,
                       Password: hashedPassword,
                       Email: req.body.Email,
                       Birthday: req.body.Birthday
