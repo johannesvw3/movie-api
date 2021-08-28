@@ -182,7 +182,7 @@ app.get("/", (req, res) => {
         [
           check('Username', 'Username is required').isLength({min: 5}),
           check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-          check('Name', 'Name contains invalid characters.').isAlpha,
+          check('Name', 'Name contains invalid characters.'),
           check('Password', 'Password is required').not().isEmpty(),
           check('Email', 'Email does not appear to be valid').isEmail()
         ], (req, res) => {
