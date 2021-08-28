@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 
             //GET ALL MOVIES//
 
-        app.get('/movies', (req, res) => {
+        app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
           Movies.find().populate('Genre Director Actors')
           .then((movies) => {
             res.status(201).json(movies);
