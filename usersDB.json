@@ -1,0 +1,4 @@
+{"_id":{"$oid":"611c0b6fcb359ae2b8220248"},"Name":"Johannes van Woerkom","Password":"password1","Email":"johannes1@email.com","Birthday":{"$date":"1995-08-05T00:00:00Z"},"Favorites":[{"$oid":"611b50565bf9b8645dd32f01"},{"$oid":"611c06f4cb359ae2b8220246"},{"$oid":"611c06f4cb359ae2b8220244"}]}
+{"_id":{"$oid":"611c0b6fcb359ae2b8220249"},"Name":"Jop Ghinaglia","Password":"password2","Email":"johannes2@email.com","Birthday":{"$date":"1996-08-05T00:00:00Z"},"Favorites":[{"$oid":"611c06f4cb359ae2b8220245"}]}
+{"_id":{"$oid":"611c0b6fcb359ae2b822024a"},"Name":"Eddrick Lastname","Password":"password3","Email":"johannes3@email.com","Birthday":{"$date":"1994-08-05T00:00:00Z"},"Favorites":[]}
+{"_id":{"$oid":"611c0b6fcb359ae2b822024b"},"Name":"Christian Person","Password":"password4","Email":"johannes4@email.com","Birthday":{"$date":"1992-08-05T00:00:00Z"},"Favorites":[]}
