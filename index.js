@@ -30,7 +30,7 @@ app.use(express.static('public'));
 
       //Allowed Origins by Cors//
 
-let allowedOrigins = ['http://localhost:8081'];
+let allowedOrigins = ['http://localhost:8081', 'https://myflix-by-jop.herokuapp.com'];
 
 app.use(cors({
   origin: (origin, callback) => {
