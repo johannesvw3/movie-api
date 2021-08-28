@@ -171,13 +171,7 @@ app.get("/", (req, res) => {
             });
 
 //Creates New User Account
-/*[
-  check('Username', 'Username is required').isLength({min: 5}),
-  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Name', 'Name Containes invalid characters').isAlpha,
-  check('Password', 'Password is required').not().isEmpty().isLength({min: 8}),
-  check('Email', 'Email does not appear to be valid').isEmail()
-]*/
+
         app.post("/user",
         [
           check('Username', 'Username is required').isLength({min: 5}),
@@ -229,7 +223,7 @@ app.put('/user/update/:Username', passport.authenticate('jwt', { session: false 
 [
   check('Username', 'Username is required').isLength({min: 5}),
   check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Name', 'Name Containes invalid characters').isAlpha,
+  check('Name', 'Name Containes invalid characters'),
   check('Password', 'Password is required').not().isEmpty(),
   check('Email', 'Email does not appear to be valid').isEmail()
 ], (req, res) => {
