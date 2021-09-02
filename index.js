@@ -27,11 +27,10 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(morgan('common'));
 app.use(express.static('public'));
-app.use(cors());
 
       //Allowed Origins by Cors//
 
-/*let allowedOrigins = ['http://localhost:8081', 'http://localhost:1234', 'https://myflix-by-jop.herokuapp.com', '*'];
+let allowedOrigins = ['http://localhost:8081', 'http://localhost:1234', 'https://myflix-by-jop.herokuapp.com', '*'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -43,7 +42,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
+
 
 
     //importing files
