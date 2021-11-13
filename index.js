@@ -61,7 +61,7 @@ app.get("/", (req, res) => {
 
             //GET ALL MOVIES//
 
-        app.get('/movies', (req, res) => {
+        app.get('/movies', passport.authenticate('jwt', { session: false }), (req, res) => {
           Movies.find().populate('Genre Director Actors')
           .then((movies) => {
             res.status(201).json(movies);
@@ -84,6 +84,18 @@ app.get("/", (req, res) => {
                 res.status(500).send('Error: ' + err);
               });
             });
+
+            app.get('/movies/movieid/:MovieID', passport.authenticate('jwt', { session: false }), (req, res) => {
+              Movies.findOne({ 
+                  Title: req.params.MovieID
+                }).populate('Genre Director Actors')
+                .then((movie) => {
+                  res.json(movie);
+                }).catch((err) => {
+                  console.error(err);
+                  res.status(500).send('Error: ' + err);
+                });
+              });
 
             //GET MOVIE BY GENRE//
 
@@ -141,6 +153,26 @@ app.get("/", (req, res) => {
                         res.status(500).send('Error: ' + err);
                       });
                     });
+
+        app.get('/actors/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
+                Actors.findOne({ 
+                        Name: req.params.name}).then((actor) => {
+                        res.json(actor);
+                      }).catch((err) => {
+                        console.error(err);
+                        res.status(500).send('Error: ' + err);
+                      });
+                    });     
+
+        app.get('/directors/:name', passport.authenticate('jwt', { session: false }), (req, res) => {
+               Directors.findOne({ 
+                        Name: req.params.name}).then((director) => {
+                        res.json(director);
+                      }).catch((err) => {
+                         console.error(err);
+                         res.status(500).send('Error: ' + err);
+                      });
+                    });        
 
         //GET ALL USERS//
 
@@ -234,11 +266,13 @@ app.put('/user/update/:Username', passport.authenticate('jwt', { session: false 
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
+  let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.findOneAndUpdate({ Username: req.params.Username }, { $set:
     {
       Username: req.body.Username,
       Name: req.body.Name,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
