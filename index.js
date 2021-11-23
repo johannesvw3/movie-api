@@ -186,6 +186,7 @@ app.get("/", (req, res) => {
             Users.findOne({ 
             _id: req.params.id}).populate('Favorites')
             .then((user) => {
+              console.log(user)
             res.json(user);
           }).catch((err) => {
             console.error(err);
