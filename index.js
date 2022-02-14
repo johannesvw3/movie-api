@@ -5,6 +5,11 @@ morgan = require('morgan');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 const cors = require('cors');
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
 const { check, validationResult } = require('express-validator');
 
 const app = express();
@@ -31,6 +36,8 @@ app.use(express.static('public'));
       //Allowed Origins by Cors//
 
 let allowedOrigins = ['http://localhost:8081', 'http://localhost:1234', 'https://myflix-by-jop.herokuapp.com', 'http://localhost:4200', 'https://johannesvw3.github.io/myFlix-Angular-client', '*'];
+
+app.use(cors(corsOptions))
 
 app.use(cors({
   origin: (origin, callback) => {
